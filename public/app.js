@@ -34,11 +34,3 @@ var def = {
     }]
   }
 };
-app.createSessionObject(def).then(function (model) {
-  var hyberCubeTest = new Hypercube('pie-1', {
-    model: model
-  });
-  var Test1 = new Test('pieChart', {
-    model: model
-  });
-});

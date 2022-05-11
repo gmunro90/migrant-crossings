@@ -30,7 +30,3 @@ const def = {
       }]
   }
 }
-app.createSessionObject(def).then(model => {
-  const hyberCubeTest = new Hypercube('pie-1', { model })
-  const Test1 = new Test('pieChart', { model })
-})
