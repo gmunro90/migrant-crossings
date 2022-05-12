@@ -1,4 +1,6 @@
 /* global enigma schema Filter include Hypercube Test app */ 
+include('./pieCharts.js.js')
+
 const session = enigma.create({
   schema,
   url: 'wss://ec2-3-92-185-52.compute-1.amazonaws.com/anon/app/6bb2c4a8-4328-46d5-88e1-747870f4e1d2'
