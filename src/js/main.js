@@ -1,5 +1,5 @@
 /* global enigma schema Filter include Hypercube Test app */ 
-include('./pieCharts.js.js')
+include('./hypercubeFilter.js')
 
 const session = enigma.create({
   schema,
@@ -10,25 +10,29 @@ session.open().then(global => {
   global.openDoc('6bb2c4a8-4328-46d5-88e1-747870f4e1d2').then(app => {
     console.log(app)
   })
-})
 
-const def = {
-  qInfo: {
-    qType: 'pie'
-  },
-  qHyperCubeDef: {
-    qDimensions: [
-      { qDef: { qFieldDefs: ['Details'] } }
-    ],
-    qMeasures: [
-      { qDef: { qDef: 'Sum({$<Activity = {"Deaths /disappearances"}>}Count)', qLabel: 'Deaths' } }
-    ],
-    qInitialDataFetch: [
-      {
-        qTop: 0,
-        qLeft: 0,
-        qWidth: 3,
-        qHeight: 10
-      }]
+  const def = {
+    qInfo: {
+      qType: 'pie'
+    },
+    qHyperCubeDef: {
+      qDimensions: [
+        { qDef: { qFieldDefs: ['Details'] } }
+      ],
+      qMeasures: [
+        { qDef: { qDef: 'Sum({$<Activity = {"Deaths /disappearances"}>}Count)', qLabel: 'Deaths' } }
+      ],
+      qInitialDataFetch: [
+        {
+          qTop: 0,
+          qLeft: 0,
+          qWidth: 3,
+          qHeight: 10
+        }]
+    }
   }
-}
+  app.createSessionObject(def).then(model => {
+    const hyperCubeTest = new Hypercube('bar-chart-parent', { model })
+    const Test1 = new Test('myChart', { model })
+  })
+})
