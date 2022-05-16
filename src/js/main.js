@@ -1,5 +1,6 @@
-/* global enigma schema Filter include Hypercube Test app */ 
+/* global enigma schema Filter include Hypercube Test app Chart */  
 include('./hypercubeFilter.js')
+include('./myChart.js')
 
 const session = enigma.create({
   schema,
@@ -26,13 +27,9 @@ session.open().then(global => {
         {
           qTop: 0,
           qLeft: 0,
-          qWidth: 3,
+          qWidth: 5,
           qHeight: 10
         }]
     }
   }
-  app.createSessionObject(def).then(model => {
-    const hyperCubeTest = new Hypercube('bar-chart-parent', { model })
-    const Test1 = new Test('myChart', { model })
-  })
 })

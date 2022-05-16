@@ -1,3 +1,4 @@
+/*
 class Hypercube {
   constructor (elementId, options) {
     const DEFAULT = {}
@@ -38,3 +39,4 @@ class Hypercube {
     })
   }
 }
+*/
