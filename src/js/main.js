@@ -1,6 +1,7 @@
 /* global enigma schema Filter include Hypercube Test app Chart */  
 include('./hypercubeFilter.js')
-include('./myChart.js')
+include('./pieOne.js')
+include('./pieTwo.js')
 
 const session = enigma.create({
   schema,

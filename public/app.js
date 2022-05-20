@@ -51,17 +51,35 @@ var data = {
   labels: labels,
   datasets: [{
     label: 'My First dataset',
-    backgroundColor: 'rgb(255, 99, 132)',
-    borderColor: 'rgb(255, 99, 132)',
+    backgroundColor: 'rgb(100, 99, 132)',
+    borderColor: 'rgb(300, 99, 132)',
     data: [0, 10, 5, 2, 20, 30, 45]
   }]
 };
 var config = {
-  type: 'line',
+  type: 'pie',
   data: data,
   options: {}
 };
-var myChart = new Chart(document.getElementById('myChart'), config);
+var pieOne = new Chart(document.getElementById('pie-1'), config);
+/* global Chart */
+
+var labels1 = ['January', 'February', 'March', 'April', 'May', 'June'];
+var data1 = {
+  labels: labels1,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(100, 99, 132)',
+    borderColor: 'rgb(300, 99, 132)',
+    data: [0, 10, 5, 2, 20, 30, 45]
+  }]
+};
+var config1 = {
+  type: 'pie',
+  data: data1,
+  options: {}
+};
+var pieTwo = new Chart(document.getElementById('pie-2'), config1);
 var session = enigma.create({
   schema: schema,
   url: 'wss://ec2-3-92-185-52.compute-1.amazonaws.com/anon/app/6bb2c4a8-4328-46d5-88e1-747870f4e1d2'
