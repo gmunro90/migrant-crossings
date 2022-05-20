@@ -1,7 +1,7 @@
 /* global enigma schema Filter include Hypercube Test app Chart */  
-include('./hypercubeFilter.js')
 include('./pieOne.js')
 include('./pieTwo.js')
+include('./pieThree.js')
 
 const session = enigma.create({
   schema,
@@ -33,4 +33,7 @@ session.open().then(global => {
         }]
     }
   }
+  app.createSessionObject(def).then(model => {
+    const TestOne = new Test('pieOne', { model })
+  })
 })

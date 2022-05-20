@@ -1,30 +1,42 @@
-/* global Chart */
-const labels = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June'
-]
+/* global Chart require */
 
-const data = {
-  labels: labels,
-  datasets: [{
-    label: 'My First dataset',
-    backgroundColor: 'rgb(100, 99, 132)',
-    borderColor: 'rgb(300, 99, 132)',
-    data: [0, 10, 5, 2, 20, 30, 45]
-  }]
+// const { render } = require("express/lib/response")
+
+class Test {
+  constructor (elementId, options) {
+    const DEFAULT = {}
+    this.elementId = elementId
+    this.options = Object.assign({}, options)
+    const el = document.getElementById(this.elementId)
+    const config = {
+      type: 'bar',
+      // data: data,
+      options: {}
+    }
+    this.pieOne = new Chart(
+      document.getElementById('pie-1'),
+      config
+    )
+    this.render()
+  }
 }
 
-const config = {
-  type: 'pie',
-  data: data,
-  options: {}
-}
-
-const pieOne = new Chart(
-  document.getElementById('pie-1'),
-  config
-)
+// render() {
+//   this.options.model.getLayout().then(layout => {
+//     const data = {
+//       labels: [],
+//       datasets: [{
+//         label: 'Deaths',
+//         backgroundColor: 'rgb(100, 99, 132)',
+//         borderColor: 'rgb(300, 99, 132)',
+//         data: []
+//       }]
+//     }
+//     layout.qHyperCube.qDataPages[0].qMatrix.forEach(row => {
+//       data.labels.push(row[0].qText)
+//       data.datasets[0].data.push(row[1].qNum)
+//     })
+//     this.myChart.data = data 
+//     this.myChart.update()
+//   })
+// }

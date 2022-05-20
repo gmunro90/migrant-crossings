@@ -1,68 +1,53 @@
 "use strict";
 
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 /* global enigma schema Filter include Hypercube Test app Chart */
 
-/*
-class Hypercube {
-  constructor (elementId, options) {
-    const DEFAULT = {}
-    this.elementId = elementId
-    this.options = Object.assign({}, options)
-    const el = document.getElementById(this.elementId)
-    if (el) {
-      el.addEventListener('click', this.handleClick.bind(this))
-      el.innerHTML = `<table id='${this.elementId}_table'></table>` 
-      this.options.model.on('changed', this.render.bind(this))
-      this.render()
-    }
-    else {
-      console.error(`no element found with id - ${this.elementId}`)
-    }
-  }
-  
-  handleClick (event) {
-    if (event.target.classList.contains('table-row')) {
-      const elemNumber = event.target.getAttribute('data-elem')
-      this.options.model.selectHyperCubeValues('/qHyperCubeDef', 0, [+elemNumber], true)
-        .then(res => {}, error => { console.log(error, 'error') })
-    }
-  }
+/* global Chart require */
+// const { render } = require("express/lib/response")
+var Test = /*#__PURE__*/_createClass(function Test(elementId, options) {
+  _classCallCheck(this, Test);
 
-  render () {
-    this.options.model.getLayout().then(layout => {
-      let html = ''
-      layout.qHyperCube.qDataPages[0].qMatrix.forEach(row => {
-        html += '<tr>'
-        html += row.map(cell => `<td data-elem="${cell.qElemNumber}"class="table-row">${cell.qText}</td>`).join('')
-        html += '</tr>'
-      })
-      const el = document.getElementById(`${this.elementId}_table`)
-      if (el) {
-        el.innerHTML = html
-      }
-    })
-  }
-}
-*/
+  var DEFAULT = {};
+  this.elementId = elementId;
+  this.options = _extends({}, options);
+  var el = document.getElementById(this.elementId);
+  var config = {
+    type: 'bar',
+    // data: data,
+    options: {}
+  };
+  this.pieOne = new Chart(document.getElementById('pie-1'), config);
+  this.render();
+}); // render() {
+//   this.options.model.getLayout().then(layout => {
+//     const data = {
+//       labels: [],
+//       datasets: [{
+//         label: 'Deaths',
+//         backgroundColor: 'rgb(100, 99, 132)',
+//         borderColor: 'rgb(300, 99, 132)',
+//         data: []
+//       }]
+//     }
+//     layout.qHyperCube.qDataPages[0].qMatrix.forEach(row => {
+//       data.labels.push(row[0].qText)
+//       data.datasets[0].data.push(row[1].qNum)
+//     })
+//     this.myChart.data = data 
+//     this.myChart.update()
+//   })
+// }
 
 /* global Chart */
-var labels = ['January', 'February', 'March', 'April', 'May', 'June'];
-var data = {
-  labels: labels,
-  datasets: [{
-    label: 'My First dataset',
-    backgroundColor: 'rgb(100, 99, 132)',
-    borderColor: 'rgb(300, 99, 132)',
-    data: [0, 10, 5, 2, 20, 30, 45]
-  }]
-};
-var config = {
-  type: 'pie',
-  data: data,
-  options: {}
-};
-var pieOne = new Chart(document.getElementById('pie-1'), config);
-/* global Chart */
+
 
 var labels1 = ['January', 'February', 'March', 'April', 'May', 'June'];
 var data1 = {
@@ -71,7 +56,7 @@ var data1 = {
     label: 'My First dataset',
     backgroundColor: 'rgb(100, 99, 132)',
     borderColor: 'rgb(300, 99, 132)',
-    data: [0, 10, 5, 2, 20, 30, 45]
+    data: [10, 5, 5, 2, 50]
   }]
 };
 var config1 = {
@@ -80,6 +65,24 @@ var config1 = {
   options: {}
 };
 var pieTwo = new Chart(document.getElementById('pie-2'), config1);
+/* global Chart */
+
+var labels2 = ['January', 'February', 'March', 'April', 'May', 'June'];
+var data2 = {
+  labels: labels2,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(100, 99, 132)',
+    borderColor: 'rgb(300, 99, 132)',
+    data: [10, 5, 5, 2, 50]
+  }]
+};
+var config2 = {
+  type: 'pie',
+  data: data2,
+  options: {}
+};
+var pieThree = new Chart(document.getElementById('pie-3'), config2);
 var session = enigma.create({
   schema: schema,
   url: 'wss://ec2-3-92-185-52.compute-1.amazonaws.com/anon/app/6bb2c4a8-4328-46d5-88e1-747870f4e1d2'
@@ -112,4 +115,9 @@ session.open().then(function (global) {
       }]
     }
   };
+  app.createSessionObject(def).then(function (model) {
+    var TestOne = new Test('pieOne', {
+      model: model
+    });
+  });
 });

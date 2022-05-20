@@ -1,5 +1,5 @@
 /* global Chart */
-const labels1 = [
+const labels2 = [
   'January',
   'February',
   'March',
@@ -8,8 +8,8 @@ const labels1 = [
   'June'
 ]
 
-const data1 = {
-  labels: labels1,
+const data2 = {
+  labels: labels2,
   datasets: [{
     label: 'My First dataset',
     backgroundColor: 'rgb(100, 99, 132)',
@@ -18,13 +18,13 @@ const data1 = {
   }]
 }
 
-const config1 = {
+const config2 = {
   type: 'pie',
-  data: data1,
+  data: data2,
   options: {}
 }
 
-const pieTwo = new Chart(
-  document.getElementById('pie-2'),
-  config1
+const pieThree = new Chart(
+  document.getElementById('pie-3'),
+  config2
 )

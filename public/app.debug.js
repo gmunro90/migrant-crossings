@@ -1,77 +1,46 @@
 /* global enigma schema Filter include Hypercube Test app Chart */  
-/*
-class Hypercube {
+/* global Chart require */
+
+// const { render } = require("express/lib/response")
+
+class Test {
   constructor (elementId, options) {
     const DEFAULT = {}
     this.elementId = elementId
     this.options = Object.assign({}, options)
     const el = document.getElementById(this.elementId)
-    if (el) {
-      el.addEventListener('click', this.handleClick.bind(this))
-      el.innerHTML = `<table id='${this.elementId}_table'></table>` 
-      this.options.model.on('changed', this.render.bind(this))
-      this.render()
+    const config = {
+      type: 'bar',
+      // data: data,
+      options: {}
     }
-    else {
-      console.error(`no element found with id - ${this.elementId}`)
-    }
-  }
-  
-  handleClick (event) {
-    if (event.target.classList.contains('table-row')) {
-      const elemNumber = event.target.getAttribute('data-elem')
-      this.options.model.selectHyperCubeValues('/qHyperCubeDef', 0, [+elemNumber], true)
-        .then(res => {}, error => { console.log(error, 'error') })
-    }
-  }
-
-  render () {
-    this.options.model.getLayout().then(layout => {
-      let html = ''
-      layout.qHyperCube.qDataPages[0].qMatrix.forEach(row => {
-        html += '<tr>'
-        html += row.map(cell => `<td data-elem="${cell.qElemNumber}"class="table-row">${cell.qText}</td>`).join('')
-        html += '</tr>'
-      })
-      const el = document.getElementById(`${this.elementId}_table`)
-      if (el) {
-        el.innerHTML = html
-      }
-    })
+    this.pieOne = new Chart(
+      document.getElementById('pie-1'),
+      config
+    )
+    this.render()
   }
 }
-*/
 
-/* global Chart */
-const labels = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June'
-]
-
-const data = {
-  labels: labels,
-  datasets: [{
-    label: 'My First dataset',
-    backgroundColor: 'rgb(100, 99, 132)',
-    borderColor: 'rgb(300, 99, 132)',
-    data: [0, 10, 5, 2, 20, 30, 45]
-  }]
-}
-
-const config = {
-  type: 'pie',
-  data: data,
-  options: {}
-}
-
-const pieOne = new Chart(
-  document.getElementById('pie-1'),
-  config
-)
+// render() {
+//   this.options.model.getLayout().then(layout => {
+//     const data = {
+//       labels: [],
+//       datasets: [{
+//         label: 'Deaths',
+//         backgroundColor: 'rgb(100, 99, 132)',
+//         borderColor: 'rgb(300, 99, 132)',
+//         data: []
+//       }]
+//     }
+//     layout.qHyperCube.qDataPages[0].qMatrix.forEach(row => {
+//       data.labels.push(row[0].qText)
+//       data.datasets[0].data.push(row[1].qNum)
+//     })
+//     this.myChart.data = data 
+//     this.myChart.update()
+//   })
+// }
 
 /* global Chart */
 const labels1 = [
@@ -89,7 +58,7 @@ const data1 = {
     label: 'My First dataset',
     backgroundColor: 'rgb(100, 99, 132)',
     borderColor: 'rgb(300, 99, 132)',
-    data: [0, 10, 5, 2, 20, 30, 45]
+    data: [10, 5, 5, 2, 50]
   }]
 }
 
@@ -102,6 +71,37 @@ const config1 = {
 const pieTwo = new Chart(
   document.getElementById('pie-2'),
   config1
+)
+
+/* global Chart */
+const labels2 = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June'
+]
+
+const data2 = {
+  labels: labels2,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(100, 99, 132)',
+    borderColor: 'rgb(300, 99, 132)',
+    data: [10, 5, 5, 2, 50]
+  }]
+}
+
+const config2 = {
+  type: 'pie',
+  data: data2,
+  options: {}
+}
+
+const pieThree = new Chart(
+  document.getElementById('pie-3'),
+  config2
 )
 
 
@@ -135,4 +135,7 @@ session.open().then(global => {
         }]
     }
   }
+  app.createSessionObject(def).then(model => {
+    const TestOne = new Test('pieOne', { model })
+  })
 })
