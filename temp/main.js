@@ -1,7 +1,5 @@
 /* global enigma schema Filter include Hypercube Test app Chart */  
-/* global Chart require */
-
-// const { render } = require("express/lib/response")
+/* global Chart render */
 
 class Test {
   constructor (elementId, options) {
@@ -11,7 +9,6 @@ class Test {
     const el = document.getElementById(this.elementId)
     const config = {
       type: 'bar',
-      // data: data,
       options: {}
     }
     this.pieOne = new Chart(
@@ -20,89 +17,27 @@ class Test {
     )
     this.render()
   }
+        
+  render () {
+    this.options.model.getLayout().then(layout => {
+      const data = {
+        labels: [],
+        datasets: [{
+          label: 'Deaths',
+          backgroundColor: 'rgb(100, 99, 132)',
+          borderColor: 'rgb(300, 99, 132)',
+          data: []
+        }]
+      }
+      layout.qHyperCube.qDataPages[0].qMatrix.forEach(row => {
+        data.labels.push(row[0].qText)
+        data.datasets[0].data.push(row[1].qNum)
+      })
+      this.myChart.data = data 
+      this.myChart.update()
+    })
+  }
 }
-
-// render() {
-//   this.options.model.getLayout().then(layout => {
-//     const data = {
-//       labels: [],
-//       datasets: [{
-//         label: 'Deaths',
-//         backgroundColor: 'rgb(100, 99, 132)',
-//         borderColor: 'rgb(300, 99, 132)',
-//         data: []
-//       }]
-//     }
-//     layout.qHyperCube.qDataPages[0].qMatrix.forEach(row => {
-//       data.labels.push(row[0].qText)
-//       data.datasets[0].data.push(row[1].qNum)
-//     })
-//     this.myChart.data = data 
-//     this.myChart.update()
-//   })
-// }
-
-/* global Chart */
-const labels1 = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June'
-]
-
-const data1 = {
-  labels: labels1,
-  datasets: [{
-    label: 'My First dataset',
-    backgroundColor: 'rgb(100, 99, 132)',
-    borderColor: 'rgb(300, 99, 132)',
-    data: [10, 5, 5, 2, 50]
-  }]
-}
-
-const config1 = {
-  type: 'pie',
-  data: data1,
-  options: {}
-}
-
-const pieTwo = new Chart(
-  document.getElementById('pie-2'),
-  config1
-)
-
-/* global Chart */
-const labels2 = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June'
-]
-
-const data2 = {
-  labels: labels2,
-  datasets: [{
-    label: 'My First dataset',
-    backgroundColor: 'rgb(100, 99, 132)',
-    borderColor: 'rgb(300, 99, 132)',
-    data: [10, 5, 5, 2, 50]
-  }]
-}
-
-const config2 = {
-  type: 'pie',
-  data: data2,
-  options: {}
-}
-
-const pieThree = new Chart(
-  document.getElementById('pie-3'),
-  config2
-)
 
 
 const session = enigma.create({
@@ -130,12 +65,13 @@ session.open().then(global => {
         {
           qTop: 0,
           qLeft: 0,
-          qWidth: 5,
-          qHeight: 10
+          qWidth: 2,
+          qHeight: 5
         }]
     }
   }
   app.createSessionObject(def).then(model => {
     const TestOne = new Test('pieOne', { model })
+    console.log(TestOne)
   })
 })
