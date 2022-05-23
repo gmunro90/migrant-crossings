@@ -8,8 +8,6 @@ const session = enigma.create({
 
 session.open().then(global => {
   global.openDoc('6bb2c4a8-4328-46d5-88e1-747870f4e1d2').then(app => {
-    console.log(app)
-
     const def = {
       qInfo: {
         qType: 'pie-test'
@@ -19,7 +17,7 @@ session.open().then(global => {
           { qDef: { qFieldDefs: ['Details'] } }
         ],
         qMeasures: [
-          { qDef: { qDef: `Sum({$<Details = {"Deaths recorded in Central Med"}>}Count)`, qLabel: 'Deaths' } }
+          { qDef: { qDef: `Sum({$<Details = {"Deaths recorded in Central Med"} >}Count)`, qLabel: 'Deaths' } }
         ],
         qInitialDataFetch: [
           {
@@ -32,7 +30,53 @@ session.open().then(global => {
     }
     app.createSessionObject(def).then(model => {
       const TestOne = new PieOne('pie-1', { model })
-      console.log(TestOne)
+    })
+
+    const def1 = {
+      qInfo: {
+        qType: 'pie-test'
+      },
+      qHyperCubeDef: {
+        qDimensions: [
+          { qDef: { qFieldDefs: ['Activity'] } }
+        ],
+        qMeasures: [
+          { qDef: { qDef: `Sum({$<Activity = {"Interceptions at sea"}>}Count)`, qLabel: 'Interceptions' } }
+        ],
+        qInitialDataFetch: [
+          {
+            qTop: 0,
+            qLeft: 0,
+            qWidth: 3,
+            qHeight: 3
+          }]
+      }
+    }
+    app.createSessionObject(def1).then(model => {
+      const TestTwo = new PieOne('pie-2', { model })
+    })
+    const def2 = {
+      qInfo: {
+        qType: 'pie-test'
+      },
+      qHyperCubeDef: {
+        qDimensions: [
+          { qDef: { qFieldDefs: ['Activity'] } }
+        ],
+        qMeasures: [
+          { qDef: { qDef: `Sum({$<Activity = {"Irregular arrivals in Europe"}>}Count)`, qLabel: 'Interceptions' } }
+        ],
+        qInitialDataFetch: [
+          {
+            qTop: 0,
+            qLeft: 0,
+            qWidth: 3,
+            qHeight: 3
+          }]
+      }
+    }
+    app.createSessionObject(def2).then(model => {
+      const TestTwo = new PieOne('pie-3', { model })
     })
   })
 })

@@ -23,7 +23,7 @@ var PieOne = /*#__PURE__*/function () {
       type: 'pie',
       options: {}
     };
-    this.pieOne = new Chart(document.getElementById('pie-1'), config);
+    this.pieOne = new Chart(document.getElementById(this.elementId), config);
     this.render();
   }
 
@@ -36,7 +36,7 @@ var PieOne = /*#__PURE__*/function () {
         var data = {
           labels: [],
           datasets: [{
-            label: 'Deaths',
+            label: '',
             backgroundColor: 'rgb(43, 144, 201)',
             borderColor: 'rgb(255, 255, 255)',
             data: []
@@ -62,7 +62,6 @@ var session = enigma.create({
 });
 session.open().then(function (global) {
   global.openDoc('6bb2c4a8-4328-46d5-88e1-747870f4e1d2').then(function (app) {
-    console.log(app);
     var def = {
       qInfo: {
         qType: 'pie-test'
@@ -75,7 +74,7 @@ session.open().then(function (global) {
         }],
         qMeasures: [{
           qDef: {
-            qDef: "Sum({$<Details = {\"Deaths recorded in Central Med\"}>}Count)",
+            qDef: "Sum({$<Details = {\"Deaths recorded in Central Med\"} >}Count)",
             qLabel: 'Deaths'
           }
         }],
@@ -91,7 +90,64 @@ session.open().then(function (global) {
       var TestOne = new PieOne('pie-1', {
         model: model
       });
-      console.log(TestOne);
+    });
+    var def1 = {
+      qInfo: {
+        qType: 'pie-test'
+      },
+      qHyperCubeDef: {
+        qDimensions: [{
+          qDef: {
+            qFieldDefs: ['Activity']
+          }
+        }],
+        qMeasures: [{
+          qDef: {
+            qDef: "Sum({$<Activity = {\"Interceptions at sea\"}>}Count)",
+            qLabel: 'Interceptions'
+          }
+        }],
+        qInitialDataFetch: [{
+          qTop: 0,
+          qLeft: 0,
+          qWidth: 3,
+          qHeight: 3
+        }]
+      }
+    };
+    app.createSessionObject(def1).then(function (model) {
+      var TestTwo = new PieOne('pie-2', {
+        model: model
+      });
+    });
+    var def2 = {
+      qInfo: {
+        qType: 'pie-test'
+      },
+      qHyperCubeDef: {
+        qDimensions: [{
+          qDef: {
+            qFieldDefs: ['Activity']
+          }
+        }],
+        qMeasures: [{
+          qDef: {
+            qDef: "Sum({$<Activity = {\"Irregular arrivals in Europe\"}>}Count)",
+            qLabel: 'Interceptions'
+          }
+        }],
+        qInitialDataFetch: [{
+          qTop: 0,
+          qLeft: 0,
+          qWidth: 3,
+          qHeight: 3
+        }]
+      }
+    };
+    app.createSessionObject(def2).then(function (model) {
+      var TestTwo = new PieOne('pie-3', {
+        model: model
+      });
     });
   });
 });

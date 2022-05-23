@@ -11,7 +11,7 @@ class PieOne {
       options: {}
     }
     this.pieOne = new Chart(
-      document.getElementById('pie-1'),
+      document.getElementById(this.elementId),
       config
     )
     this.render()
@@ -22,7 +22,7 @@ class PieOne {
       const data = {
         labels: [],
         datasets: [{
-          label: 'Deaths',
+          label: '',
           backgroundColor: 'rgb(43, 144, 201)',
           borderColor: 'rgb(255, 255, 255)',
           data: []
