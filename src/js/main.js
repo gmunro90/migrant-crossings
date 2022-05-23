@@ -1,5 +1,6 @@
-/* global enigma schema Filter include Hypercube PieOne app Chart */  
+/* global enigma schema Filter include Hypercube PieOne app Chart BarOne */  
 include('./pieOne.js')
+include('./barOne.js')
 
 const session = enigma.create({
   schema,
@@ -10,7 +11,7 @@ session.open().then(global => {
   global.openDoc('6bb2c4a8-4328-46d5-88e1-747870f4e1d2').then(app => {
     const def = {
       qInfo: {
-        qType: 'pie-test'
+        qType: 'pie-one'
       },
       qHyperCubeDef: {
         qDimensions: [
@@ -34,7 +35,7 @@ session.open().then(global => {
 
     const def1 = {
       qInfo: {
-        qType: 'pie-test'
+        qType: 'pie-two'
       },
       qHyperCubeDef: {
         qDimensions: [
@@ -55,9 +56,10 @@ session.open().then(global => {
     app.createSessionObject(def1).then(model => {
       const TestTwo = new PieOne('pie-2', { model })
     })
+
     const def2 = {
       qInfo: {
-        qType: 'pie-test'
+        qType: 'pie-three'
       },
       qHyperCubeDef: {
         qDimensions: [
@@ -77,6 +79,29 @@ session.open().then(global => {
     }
     app.createSessionObject(def2).then(model => {
       const TestTwo = new PieOne('pie-3', { model })
+    })
+    const def3 = {
+      qInfo: {
+        qType: 'bar-one'
+      },
+      qHyperCubeDef: {
+        qDimensions: [
+          { qDef: { qFieldDefs: ['Year'], qLabel: 'Year' } }
+        ],
+        qMeasures: [
+          { qDef: { qDef: `Sum({$<Activity = {"Deaths /disappearances"}>}Count)`, qLabel: 'Deaths' } }
+        ],
+        qInitialDataFetch: [
+          {
+            qTop: 0,
+            qLeft: 0,
+            qWidth: 10,
+            qHeight: 1000
+          }]
+      }
+    }
+    app.createSessionObject(def3).then(model => {
+      const TestTwo = new BarOne('bar-1', { model })
     })
   })
 })

@@ -7,7 +7,7 @@ class PieOne {
     this.options = Object.assign({}, options)
     const el = document.getElementById(this.elementId)
     const config = {
-      type: 'pie',
+      type: 'doughnut',
       options: {}
     }
     this.pieOne = new Chart(
