@@ -1,6 +1,7 @@
-/* global enigma schema Filter include Hypercube PieOne app Chart BarOne */  
+/* global enigma schema Filter include Hypercube PieOne app Chart BarOne LineOne */  
 include('./pieOne.js')
 include('./barOne.js')
+include('./lineOne.js')
 
 const session = enigma.create({
   schema,
@@ -80,6 +81,7 @@ session.open().then(global => {
     app.createSessionObject(def2).then(model => {
       const TestTwo = new PieOne('pie-3', { model })
     })
+
     const def3 = {
       qInfo: {
         qType: 'bar-one'
@@ -102,6 +104,29 @@ session.open().then(global => {
     }
     app.createSessionObject(def3).then(model => {
       const TestTwo = new BarOne('bar-1', { model })
+    })
+    const def4 = {
+      qInfo: {
+        qType: 'line-one'
+      },
+      qHyperCubeDef: {
+        qDimensions: [
+          { qDef: { qFieldDefs: ['Month'], qLabel: 'Month' } }
+        ],
+        qMeasures: [
+          { qDef: { qDef: `Sum({$<Activity = {"Deaths /disappearances"}>}Count)`, qLabel: 'Deaths' } }
+        ],
+        qInitialDataFetch: [
+          {
+            qTop: 0,
+            qLeft: 0,
+            qWidth: 10,
+            qHeight: 1000
+          }]
+      }
+    }
+    app.createSessionObject(def4).then(model => {
+      const TestTwo = new LineOne('line-1', { model })
     })
   })
 })

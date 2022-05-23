@@ -8,7 +8,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-/* global enigma schema Filter include Hypercube PieOne app Chart BarOne */
+/* global enigma schema Filter include Hypercube PieOne app Chart BarOne LineOne */
 
 /* global Chart render */
 var PieOne = /*#__PURE__*/function () {
@@ -101,6 +101,56 @@ var BarOne = /*#__PURE__*/function () {
   }]);
 
   return BarOne;
+}();
+/* global Chart render */
+
+
+var LineOne = /*#__PURE__*/function () {
+  function LineOne(elementId, options) {
+    _classCallCheck(this, LineOne);
+
+    var DEFAULT = {};
+    this.elementId = elementId;
+    this.options = _extends({}, options);
+    var el = document.getElementById(this.elementId);
+    var config = {
+      type: 'line',
+      options: {
+        showLine: true
+      }
+    };
+    this.lineOne = new Chart(document.getElementById(this.elementId), config);
+    this.render();
+  }
+
+  _createClass(LineOne, [{
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      this.options.model.getLayout().then(function (layout) {
+        var data = {
+          labels: [],
+          datasets: [{
+            label: '',
+            fill: false,
+            borderColor: 'rgb(75, 192, 192))',
+            tension: 0.1,
+            data: []
+          }]
+        };
+        layout.qHyperCube.qDataPages[0].qMatrix.forEach(function (row) {
+          data.labels.push(row[0].qText);
+          data.datasets[0].data.push(row[1].qNum);
+        });
+        _this3.lineOne.data = data;
+
+        _this3.lineOne.update();
+      });
+    }
+  }]);
+
+  return LineOne;
 }();
 
 var session = enigma.create({
@@ -223,6 +273,36 @@ session.open().then(function (global) {
     };
     app.createSessionObject(def3).then(function (model) {
       var TestTwo = new BarOne('bar-1', {
+        model: model
+      });
+    });
+    var def4 = {
+      qInfo: {
+        qType: 'line-one'
+      },
+      qHyperCubeDef: {
+        qDimensions: [{
+          qDef: {
+            qFieldDefs: ['Month'],
+            qLabel: 'Month'
+          }
+        }],
+        qMeasures: [{
+          qDef: {
+            qDef: "Sum({$<Activity = {\"Deaths /disappearances\"}>}Count)",
+            qLabel: 'Deaths'
+          }
+        }],
+        qInitialDataFetch: [{
+          qTop: 0,
+          qLeft: 0,
+          qWidth: 10,
+          qHeight: 1000
+        }]
+      }
+    };
+    app.createSessionObject(def4).then(function (model) {
+      var TestTwo = new LineOne('line-1', {
         model: model
       });
     });
