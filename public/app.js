@@ -8,26 +8,26 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-/* global enigma schema Filter include Hypercube Test app Chart */
+/* global enigma schema Filter include Hypercube PieOne app Chart */
 
 /* global Chart render */
-var Test = /*#__PURE__*/function () {
-  function Test(elementId, options) {
-    _classCallCheck(this, Test);
+var PieOne = /*#__PURE__*/function () {
+  function PieOne(elementId, options) {
+    _classCallCheck(this, PieOne);
 
     var DEFAULT = {};
     this.elementId = elementId;
     this.options = _extends({}, options);
     var el = document.getElementById(this.elementId);
     var config = {
-      type: 'bar',
+      type: 'pie',
       options: {}
     };
     this.pieOne = new Chart(document.getElementById('pie-1'), config);
     this.render();
   }
 
-  _createClass(Test, [{
+  _createClass(PieOne, [{
     key: "render",
     value: function render() {
       var _this = this;
@@ -37,8 +37,8 @@ var Test = /*#__PURE__*/function () {
           labels: [],
           datasets: [{
             label: 'Deaths',
-            backgroundColor: 'rgb(100, 99, 132)',
-            borderColor: 'rgb(300, 99, 132)',
+            backgroundColor: 'rgb(43, 144, 201)',
+            borderColor: 'rgb(255, 255, 255)',
             data: []
           }]
         };
@@ -46,14 +46,14 @@ var Test = /*#__PURE__*/function () {
           data.labels.push(row[0].qText);
           data.datasets[0].data.push(row[1].qNum);
         });
-        _this.myChart.data = data;
+        _this.pieOne.data = data;
 
-        _this.myChart.update();
+        _this.pieOne.update();
       });
     }
   }]);
 
-  return Test;
+  return PieOne;
 }();
 
 var session = enigma.create({
@@ -63,35 +63,35 @@ var session = enigma.create({
 session.open().then(function (global) {
   global.openDoc('6bb2c4a8-4328-46d5-88e1-747870f4e1d2').then(function (app) {
     console.log(app);
-  });
-  var def = {
-    qInfo: {
-      qType: 'pie'
-    },
-    qHyperCubeDef: {
-      qDimensions: [{
-        qDef: {
-          qFieldDefs: ['Details']
-        }
-      }],
-      qMeasures: [{
-        qDef: {
-          qDef: 'Sum({$<Activity = {"Deaths /disappearances"}>}Count)',
-          qLabel: 'Deaths'
-        }
-      }],
-      qInitialDataFetch: [{
-        qTop: 0,
-        qLeft: 0,
-        qWidth: 2,
-        qHeight: 5
-      }]
-    }
-  };
-  app.createSessionObject(def).then(function (model) {
-    var TestOne = new Test('pieOne', {
-      model: model
+    var def = {
+      qInfo: {
+        qType: 'pie-test'
+      },
+      qHyperCubeDef: {
+        qDimensions: [{
+          qDef: {
+            qFieldDefs: ['Details']
+          }
+        }],
+        qMeasures: [{
+          qDef: {
+            qDef: "Sum({$<Details = {\"Deaths recorded in Central Med\"}>}Count)",
+            qLabel: 'Deaths'
+          }
+        }],
+        qInitialDataFetch: [{
+          qTop: 0,
+          qLeft: 0,
+          qWidth: 3,
+          qHeight: 3
+        }]
+      }
+    };
+    app.createSessionObject(def).then(function (model) {
+      var TestOne = new PieOne('pie-1', {
+        model: model
+      });
+      console.log(TestOne);
     });
-    console.log(TestOne);
   });
 });

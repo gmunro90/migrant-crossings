@@ -1,13 +1,13 @@
 /* global Chart render */
 
-class Test {
+class PieOne {
   constructor (elementId, options) {
     const DEFAULT = {}
     this.elementId = elementId
     this.options = Object.assign({}, options)
     const el = document.getElementById(this.elementId)
     const config = {
-      type: 'bar',
+      type: 'pie',
       options: {}
     }
     this.pieOne = new Chart(
@@ -23,8 +23,8 @@ class Test {
         labels: [],
         datasets: [{
           label: 'Deaths',
-          backgroundColor: 'rgb(100, 99, 132)',
-          borderColor: 'rgb(300, 99, 132)',
+          backgroundColor: 'rgb(43, 144, 201)',
+          borderColor: 'rgb(255, 255, 255)',
           data: []
         }]
       }
@@ -32,8 +32,8 @@ class Test {
         data.labels.push(row[0].qText)
         data.datasets[0].data.push(row[1].qNum)
       })
-      this.myChart.data = data 
-      this.myChart.update()
+      this.pieOne.data = data 
+      this.pieOne.update()
     })
   }
 }

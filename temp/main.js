@@ -1,14 +1,14 @@
-/* global enigma schema Filter include Hypercube Test app Chart */  
+/* global enigma schema Filter include Hypercube PieOne app Chart */  
 /* global Chart render */
 
-class Test {
+class PieOne {
   constructor (elementId, options) {
     const DEFAULT = {}
     this.elementId = elementId
     this.options = Object.assign({}, options)
     const el = document.getElementById(this.elementId)
     const config = {
-      type: 'bar',
+      type: 'pie',
       options: {}
     }
     this.pieOne = new Chart(
@@ -24,8 +24,8 @@ class Test {
         labels: [],
         datasets: [{
           label: 'Deaths',
-          backgroundColor: 'rgb(100, 99, 132)',
-          borderColor: 'rgb(300, 99, 132)',
+          backgroundColor: 'rgb(43, 144, 201)',
+          borderColor: 'rgb(255, 255, 255)',
           data: []
         }]
       }
@@ -33,8 +33,8 @@ class Test {
         data.labels.push(row[0].qText)
         data.datasets[0].data.push(row[1].qNum)
       })
-      this.myChart.data = data 
-      this.myChart.update()
+      this.pieOne.data = data 
+      this.pieOne.update()
     })
   }
 }
@@ -48,30 +48,30 @@ const session = enigma.create({
 session.open().then(global => {
   global.openDoc('6bb2c4a8-4328-46d5-88e1-747870f4e1d2').then(app => {
     console.log(app)
-  })
 
-  const def = {
-    qInfo: {
-      qType: 'pie'
-    },
-    qHyperCubeDef: {
-      qDimensions: [
-        { qDef: { qFieldDefs: ['Details'] } }
-      ],
-      qMeasures: [
-        { qDef: { qDef: 'Sum({$<Activity = {"Deaths /disappearances"}>}Count)', qLabel: 'Deaths' } }
-      ],
-      qInitialDataFetch: [
-        {
-          qTop: 0,
-          qLeft: 0,
-          qWidth: 2,
-          qHeight: 5
-        }]
+    const def = {
+      qInfo: {
+        qType: 'pie-test'
+      },
+      qHyperCubeDef: {
+        qDimensions: [
+          { qDef: { qFieldDefs: ['Details'] } }
+        ],
+        qMeasures: [
+          { qDef: { qDef: `Sum({$<Details = {"Deaths recorded in Central Med"}>}Count)`, qLabel: 'Deaths' } }
+        ],
+        qInitialDataFetch: [
+          {
+            qTop: 0,
+            qLeft: 0,
+            qWidth: 3,
+            qHeight: 3
+          }]
+      }
     }
-  }
-  app.createSessionObject(def).then(model => {
-    const TestOne = new Test('pieOne', { model })
-    console.log(TestOne)
+    app.createSessionObject(def).then(model => {
+      const TestOne = new PieOne('pie-1', { model })
+      console.log(TestOne)
+    })
   })
 })
