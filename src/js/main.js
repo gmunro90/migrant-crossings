@@ -2,6 +2,7 @@
 include('./pieOne.js')
 include('./barOne.js')
 include('./lineOne.js')
+include('./filter.js')
 
 const session = enigma.create({
   schema,
@@ -127,6 +128,25 @@ session.open().then(global => {
     }
     app.createSessionObject(def4).then(model => {
       const TestTwo = new LineOne('line-1', { model })
+    })
+    const def5 = {
+      qinfo: {
+        qType: 'Year filter'
+      },
+      qListObjectDef: {
+        qDef: {
+          qFieldDefs: ['Year']
+        },
+        qInitialDataFetch: [{
+          qTop: 0,
+          qLeft: 0,
+          qWidth: 1,
+          qHeight: 6
+        }]
+      }
+    }
+    app.createSessionObject(def5).then(model => {
+      const f = new Filter('filter1', { model })
     })
   })
 })

@@ -6,19 +6,34 @@ class LineOne {
     this.elementId = elementId
     this.options = Object.assign({}, options)
     const el = document.getElementById(this.elementId)
-    const config = {
-      type: 'line',
-      options: {
-        showLine: true
+    if (el) {
+      el.addEventListener('click', this.handleClick.bind(this))
+      this.options.model.on('changed', this.render.bind(this))
+      const config = {
+        type: 'line',
+        options: {
+          showLine: true
+        }
       }
+      this.lineOne = new Chart(
+        document.getElementById(this.elementId),
+        config
+      )
+      this.render()
     }
-    this.lineOne = new Chart(
-      document.getElementById(this.elementId),
-      config
-    )
-    this.render()
-  }
+    else {
+      console.error(`no element found with id - ${this.elementId}`)
+    }
+  }  
         
+  handleClick (event) {
+    if (event.target.classList.contains('table-row')) {
+      const elemNumber = event.target.getAttribute('data-elem')
+      this.options.model.selectHyperCubeValues('/qHyperCubeDef', 0, [+elemNumber], true)
+        .then(res => {}, error => { console.log(error, 'error') })
+    }
+  }
+  
   render () {
     this.options.model.getLayout().then(layout => {
       const data = {

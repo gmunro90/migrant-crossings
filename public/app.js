@@ -66,15 +66,32 @@ var BarOne = /*#__PURE__*/function () {
     this.elementId = elementId;
     this.options = _extends({}, options);
     var el = document.getElementById(this.elementId);
-    var config = {
-      type: 'bar',
-      options: {}
-    };
-    this.barOne = new Chart(document.getElementById(this.elementId), config);
-    this.render();
+
+    if (el) {
+      el.addEventListener('click', this.handleClick.bind(this));
+      this.options.model.on('changed', this.render.bind(this));
+      var config = {
+        type: 'bar',
+        options: {}
+      };
+      this.barOne = new Chart(document.getElementById(this.elementId), config);
+      this.render();
+    } else {
+      console.error("no element found with id - ".concat(this.elementId));
+    }
   }
 
   _createClass(BarOne, [{
+    key: "handleClick",
+    value: function handleClick(event) {
+      if (event.target.classList.contains('table-row')) {
+        var elemNumber = event.target.getAttribute('data-elem');
+        this.options.model.selectHyperCubeValues('/qHyperCubeDef', 0, [+elemNumber], true).then(function (res) {}, function (error) {
+          console.log(error, 'error');
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -113,17 +130,34 @@ var LineOne = /*#__PURE__*/function () {
     this.elementId = elementId;
     this.options = _extends({}, options);
     var el = document.getElementById(this.elementId);
-    var config = {
-      type: 'line',
-      options: {
-        showLine: true
-      }
-    };
-    this.lineOne = new Chart(document.getElementById(this.elementId), config);
-    this.render();
+
+    if (el) {
+      el.addEventListener('click', this.handleClick.bind(this));
+      this.options.model.on('changed', this.render.bind(this));
+      var config = {
+        type: 'line',
+        options: {
+          showLine: true
+        }
+      };
+      this.lineOne = new Chart(document.getElementById(this.elementId), config);
+      this.render();
+    } else {
+      console.error("no element found with id - ".concat(this.elementId));
+    }
   }
 
   _createClass(LineOne, [{
+    key: "handleClick",
+    value: function handleClick(event) {
+      if (event.target.classList.contains('table-row')) {
+        var elemNumber = event.target.getAttribute('data-elem');
+        this.options.model.selectHyperCubeValues('/qHyperCubeDef', 0, [+elemNumber], true).then(function (res) {}, function (error) {
+          console.log(error, 'error');
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -151,6 +185,54 @@ var LineOne = /*#__PURE__*/function () {
   }]);
 
   return LineOne;
+}();
+
+var Filter = /*#__PURE__*/function () {
+  function Filter(elementId, options) {
+    _classCallCheck(this, Filter);
+
+    var DEFAULT = {};
+    this.elementId = elementId;
+    this.options = _extends({}, options);
+    var el = document.getElementById(this.elementId);
+
+    if (el) {
+      el.addEventListener('click', this.handleClick.bind(this));
+      el.innerHTML = "<ul id='".concat(this.elementId, "_list'></ul>");
+      this.options.model.on('changed', this.render.bind(this));
+      this.render();
+    } else {
+      console.error("no element found with id - ".concat(this.elementId));
+    }
+  }
+
+  _createClass(Filter, [{
+    key: "handleClick",
+    value: function handleClick(event) {
+      if (event.target.classList.contains('list-item')) {
+        var elemNumber = event.target.getAttribute('data-elem');
+        this.options.model.selectListObjectValues('/qListObjectDef', [+elemNumber], true);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this4 = this;
+
+      this.options.model.getLayout().then(function (layout) {
+        var html = layout.qListObject.qDataPages[0].qMatrix.map(function (row) {
+          return "<li data-elem=\"".concat(row[0].qElemNumber, "\" class='list-item state-").concat(row[0].qState, "'>").concat(row[0].qText, "</li>");
+        }).join('');
+        var el = document.getElementById("".concat(_this4.elementId, "_list"));
+
+        if (el) {
+          el.innerHTML = html;
+        }
+      });
+    }
+  }]);
+
+  return Filter;
 }();
 
 var session = enigma.create({
@@ -303,6 +385,27 @@ session.open().then(function (global) {
     };
     app.createSessionObject(def4).then(function (model) {
       var TestTwo = new LineOne('line-1', {
+        model: model
+      });
+    });
+    var def5 = {
+      qinfo: {
+        qType: 'Year filter'
+      },
+      qListObjectDef: {
+        qDef: {
+          qFieldDefs: ['Year']
+        },
+        qInitialDataFetch: [{
+          qTop: 0,
+          qLeft: 0,
+          qWidth: 1,
+          qHeight: 6
+        }]
+      }
+    };
+    app.createSessionObject(def5).then(function (model) {
+      var f = new Filter('filter1', {
         model: model
       });
     });
