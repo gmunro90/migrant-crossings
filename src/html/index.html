@@ -11,29 +11,39 @@
 </head>
 <body>
 
-  /* nav bar */
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/"><img class="hands" src="https://w7.pngwing.com/pngs/199/534/png-transparent-humanitarian-aid-symbol-international-federation-of-red-cross-and-red-crescent-societies-sign-logo-symbol-miscellaneous-text-hand.png" height="50px"/></a>
       <div class="navbar-nav">
         <ul class="nav-flex">
-        <li><a class="websy-trigger nav-item nav-link active" data-view="home">Home <span class="sr-only">(current)</span></a></li>
-        <li><a class="nav-item nav-link"  href="#">Features</a></li>
-        <li><a class="nav-item nav-link"  href="#">About us</a></li>
-      <li><a class="nav-item nav-link disabled"  href="#">Contact</a></li>
+        <li class="websy-trigger nav-item nav-link active" data-view="home">Home</li>
+        <li class="websy-trigger nav-item nav-link" data-view="features">Features</li>
+        <li class="websy-trigger nav-item nav-link" data-view="aboutus">About Us</li>
+        <li class="websy-trigger nav-item nav-link" data-view="contact">Contact</li>
       </ul>
     </div>
   </nav>
-
-  /* views */
+  
   <section>
     include "./views/home.html"
   </section>
 
-  /* scripts */
+  <section>
+    include "./views/features.html"
+  </section>
+
+  <section>
+    include "./views/aboutus.html"
+  </section>
+
+  <section>
+    include "./views/contact.html"
+  </section>
+
 <script src="/external/enigma.js/enigma.min.js"></script>
 <script src="/resources/schema.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script src="/external/@websy/websy-designs/dist/websy-designs.debug.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="/resources/app.debug.js"></script>
 
 </body>
