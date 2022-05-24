@@ -197,6 +197,16 @@ const options = {
 const router = new WebsyDesigns.Router(options)
 router.init()
 
+const objectManager = new WebsyDesigns.QlikObjectManager(options)
+objectManager.init().then(() => {
+  // The connection is now open
+})
+
+const switchTest = new WebsyDesigns.Switch('dark-mode', {
+  label: 'test', 
+  onToggle: (a, b) => {
+  } })
+
 const session = enigma.create({
   schema,
   url: 'wss://ec2-3-92-185-52.compute-1.amazonaws.com/anon/app/6bb2c4a8-4328-46d5-88e1-747870f4e1d2'
