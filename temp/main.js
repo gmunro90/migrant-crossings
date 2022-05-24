@@ -341,5 +341,28 @@ session.open().then(global => {
     app.createSessionObject(def5).then(model => {
       const f = new Filter('filter1', { model })
     })
+    const def6 = {
+      qInfo: {
+        qType: 'line-one'
+      },
+      qHyperCubeDef: {
+        qDimensions: [
+          { qDef: { qFieldDefs: ['Month'], qLabel: 'Month' } }
+        ],
+        qMeasures: [
+          { qDef: { qDef: `Sum({$<Activity = {"Deaths /disappearances"}>}Count)`, qLabel: 'Deaths' } }
+        ],
+        qInitialDataFetch: [
+          {
+            qTop: 0,
+            qLeft: 0,
+            qWidth: 10,
+            qHeight: 1000
+          }]
+      }
+    }
+    app.createSessionObject(def6).then(model => {
+      const TestTwo = new LineOne('arrivals-es', { model })
+    })
   })
 })

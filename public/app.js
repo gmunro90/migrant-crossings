@@ -415,5 +415,35 @@ session.open().then(function (global) {
         model: model
       });
     });
+    var def6 = {
+      qInfo: {
+        qType: 'line-one'
+      },
+      qHyperCubeDef: {
+        qDimensions: [{
+          qDef: {
+            qFieldDefs: ['Month'],
+            qLabel: 'Month'
+          }
+        }],
+        qMeasures: [{
+          qDef: {
+            qDef: "Sum({$<Activity = {\"Deaths /disappearances\"}>}Count)",
+            qLabel: 'Deaths'
+          }
+        }],
+        qInitialDataFetch: [{
+          qTop: 0,
+          qLeft: 0,
+          qWidth: 10,
+          qHeight: 1000
+        }]
+      }
+    };
+    app.createSessionObject(def6).then(function (model) {
+      var TestTwo = new LineOne('arrivals-es', {
+        model: model
+      });
+    });
   });
 });
