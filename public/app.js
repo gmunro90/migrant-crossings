@@ -8,7 +8,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-/* global enigma schema Filter include Hypercube PieOne app Chart BarOne LineOne */
+/* global enigma schema Filter include Hypercube PieOne app Chart BarOne LineOne WebsyDesigns */
 
 /* global Chart render */
 var PieOne = /*#__PURE__*/function () {
@@ -233,8 +233,12 @@ var Filter = /*#__PURE__*/function () {
   }]);
 
   return Filter;
-}();
+}(); // router initialisation
 
+
+var options = {};
+var router = new WebsyDesigns.Router(options);
+router.init();
 var session = enigma.create({
   schema: schema,
   url: 'wss://ec2-3-92-185-52.compute-1.amazonaws.com/anon/app/6bb2c4a8-4328-46d5-88e1-747870f4e1d2'

@@ -1,8 +1,13 @@
-/* global enigma schema Filter include Hypercube PieOne app Chart BarOne LineOne */  
+/* global enigma schema Filter include Hypercube PieOne app Chart BarOne LineOne WebsyDesigns */  
 include('./pieOne.js')
 include('./barOne.js')
 include('./lineOne.js')
 include('./filter.js')
+
+// router initialisation
+const options = {}
+const router = new WebsyDesigns.Router(options)
+router.init()
 
 const session = enigma.create({
   schema,
