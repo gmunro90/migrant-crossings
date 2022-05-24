@@ -236,7 +236,9 @@ var Filter = /*#__PURE__*/function () {
 }(); // router initialisation
 
 
-var options = {};
+var options = {
+  defaultView: 'home'
+};
 var router = new WebsyDesigns.Router(options);
 router.init();
 var session = enigma.create({

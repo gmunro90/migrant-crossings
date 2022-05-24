@@ -43,18 +43,18 @@
           </h2>
           <div class="pie-chart-parent">
             <div>
-              <canvas id="pie-1" width="250" height="180"></canvas>
+              <canvas id="pie-1" width="300" height="180"></canvas>
             </div>    
             
             <div>
-              <canvas id="pie-2" width="250" height="180"></canvas>
+              <canvas id="pie-2" width="300" height="180"></canvas>
             </div> 
             
             <div>
-              <canvas id="pie-3" width="250" height="180"></canvas>
+              <canvas id="pie-3" width="300" height="180"></canvas>
             </div> 
       
-          </div><br/><br/>
+          </div>
       <p class="lead">There is a long history of migration via the Mediterranean. Human mobility in all directions across the Mediterranean has occured for thousands of years.
         More recently, since at least the mid-1990s, thousands of people each year have crossed the Mediterranean by boat from the northern coasts of Africa and Turkey to seek asylum or to migrate
         to Europe if they do not have the documentation required by the countries of destination. It should be noted that the Mediterranean Sea is where irregular migration to Europe is most visible. 
@@ -95,6 +95,12 @@
         reach dry land after embarking on one of the most dangerous voyages of their lives at sea.
       </p>
       
+      <div id="video">
+      <iframe width="640" height="360" src="https://www.youtube.com/embed/u8cg5hhHJlA" 
+      title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+      encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
       <div class="jumbotron">
         <h2>With your help we will fight the violation of human rights at sea</h2>
        <p>We want to help protect vulnerable lives with our presence and avoid more deaths.</p>
@@ -105,10 +111,12 @@
       
       <footer>
         <ul class="footer-parent">
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Contact us</a></li>
+          <li class="websy-trigger nav-item nav-link" data-view="#">Privacy Policy</li>
+          <li class="websy-trigger nav-item nav-link" data-view="contact">Contact Us</li>
         </ul>
-        <p style="text-align:center">© Fatal Journeys - Barcelona (Spain)</p>
+        <div class="footer-p">
+        <p>© Fatal Journeys - Barcelona (Spain)</p>
+      </div>
       </footer>
     </div>
 
@@ -131,7 +139,37 @@
 
   <section>
     <div class="websy-view" data-view="contact">
-      <h1>Contact</h1>
+      
+      <div class="container">
+        <h1 class="contact-title">Contact</h1>
+      <img class="boat"src="https://api.time.com/wp-content/uploads/2014/06/italy-migrants-refugees-asylum-seekers-1.jpg" alt="boat">
+    </div>
+
+    <h2 class="contact-text">If you wish to receive our newsletter, enter your details here</h2>
+
+    <div class="form-box">
+      <form action="/action_page.php" class="test">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+      
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" >
+      
+        <label for="country">Country</label>
+        <select id="country" name="country">
+          <option value="usa">Australia</option>
+          <option value="usa">Canada</option>
+          <option value="usa">USA</option>
+          <option value="usa">UK</option>
+          <option value="usa">Spain</option>
+        </select>
+        
+      </form>
+      </div>
+
     </div>
 
   </section>
