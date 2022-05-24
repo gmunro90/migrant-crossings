@@ -417,19 +417,19 @@ session.open().then(function (global) {
     });
     var def6 = {
       qInfo: {
-        qType: 'line-one'
+        qType: 'pie-one'
       },
       qHyperCubeDef: {
         qDimensions: [{
           qDef: {
-            qFieldDefs: ['Month'],
-            qLabel: 'Month'
+            qFieldDefs: ['Details'],
+            qLabel: 'Details'
           }
         }],
         qMeasures: [{
           qDef: {
-            qDef: "Sum({$<Activity = {\"Deaths /disappearances\"}>}Count)",
-            qLabel: 'Deaths'
+            qDef: "Sum({$<Details = {\"Sea arrivals in Spain\"}>}Count)",
+            qLabel: 'Arrivals in Spain via Sea'
           }
         }],
         qInitialDataFetch: [{
@@ -441,7 +441,7 @@ session.open().then(function (global) {
       }
     };
     app.createSessionObject(def6).then(function (model) {
-      var TestTwo = new LineOne('arrivals-es', {
+      var TestTwo = new BarOne('arrivals-es', {
         model: model
       });
     });

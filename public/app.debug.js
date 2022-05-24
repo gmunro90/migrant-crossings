@@ -343,14 +343,14 @@ session.open().then(global => {
     })
     const def6 = {
       qInfo: {
-        qType: 'line-one'
+        qType: 'pie-one'
       },
       qHyperCubeDef: {
         qDimensions: [
-          { qDef: { qFieldDefs: ['Month'], qLabel: 'Month' } }
+          { qDef: { qFieldDefs: ['Details'], qLabel: 'Details' } }
         ],
         qMeasures: [
-          { qDef: { qDef: `Sum({$<Activity = {"Deaths /disappearances"}>}Count)`, qLabel: 'Deaths' } }
+          { qDef: { qDef: `Sum({$<Details = {"Sea arrivals in Spain"}>}Count)`, qLabel: 'Arrivals in Spain via Sea' } }
         ],
         qInitialDataFetch: [
           {
@@ -362,7 +362,7 @@ session.open().then(global => {
       }
     }
     app.createSessionObject(def6).then(model => {
-      const TestTwo = new LineOne('arrivals-es', { model })
+      const TestTwo = new BarOne('arrivals-es', { model })
     })
   })
 })
