@@ -240,14 +240,16 @@ var options = {
   defaultView: 'home'
 };
 var router = new WebsyDesigns.Router(options);
-router.init();
-var objectManager = new WebsyDesigns.QlikObjectManager(options);
-objectManager.init().then(function () {// The connection is now open
-});
-var switchTest = new WebsyDesigns.Switch('dark-mode', {
-  label: 'test',
-  onToggle: function onToggle(a, b) {}
-});
+router.init(); // const objectManager = new WebsyDesigns.QlikObjectManager(options)
+// objectManager.init().then(() => {
+//   // The connection is now open
+// })
+// const switchTest = new WebsyDesigns.Switch('dark-mode', {
+//   label: 'test', 
+//   onToggle: (a, b) => {
+//   } })
+
+var loader = new WebsyDesigns.WebsyLoadingDialog('loader');
 var session = enigma.create({
   schema: schema,
   url: 'wss://ec2-3-92-185-52.compute-1.amazonaws.com/anon/app/6bb2c4a8-4328-46d5-88e1-747870f4e1d2'

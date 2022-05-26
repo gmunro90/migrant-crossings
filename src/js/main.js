@@ -11,15 +11,17 @@ const options = {
 const router = new WebsyDesigns.Router(options)
 router.init()
 
-const objectManager = new WebsyDesigns.QlikObjectManager(options)
-objectManager.init().then(() => {
-  // The connection is now open
-})
+// const objectManager = new WebsyDesigns.QlikObjectManager(options)
+// objectManager.init().then(() => {
+//   // The connection is now open
+// })
 
-const switchTest = new WebsyDesigns.Switch('dark-mode', {
-  label: 'test', 
-  onToggle: (a, b) => {
-  } })
+// const switchTest = new WebsyDesigns.Switch('dark-mode', {
+//   label: 'test', 
+//   onToggle: (a, b) => {
+//   } })
+
+const loader = new WebsyDesigns.WebsyLoadingDialog('loader')
 
 const session = enigma.create({
   schema,
