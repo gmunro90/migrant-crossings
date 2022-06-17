@@ -11,7 +11,7 @@ class BarOne {
       this.options.model.on('changed', this.render.bind(this))
       const config = {
         type: 'bar',
-        options: {}
+        options: { plugins: {legend: {display: false}, title: {text: options.title, display: true}} }
       }
       this.barOne = new Chart(
         document.getElementById(this.elementId),

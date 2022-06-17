@@ -108,7 +108,7 @@ session.open().then(global => {
       },
       qHyperCubeDef: {
         qDimensions: [
-          { qDef: { qFieldDefs: ['Year'], qLabel: 'Year' } }
+          { qDef: { qFieldDefs: ['Year'], qLabel: 'Year', qSortCriterias: [{qSortByNumeric: 1}] } }
         ],
         qMeasures: [
           { qDef: { qDef: `Sum({$<Activity = {"Deaths /disappearances"}>}Count)`, qLabel: 'Deaths' } }
@@ -123,7 +123,7 @@ session.open().then(global => {
       }
     }
     app.createSessionObject(def3).then(model => {
-      const TestTwo = new BarOne('bar-1', { model })
+      const TestTwo = new BarOne('bar-1', { model, title: 'test' })
     })
     const def4 = {
       qInfo: {
@@ -131,7 +131,7 @@ session.open().then(global => {
       },
       qHyperCubeDef: {
         qDimensions: [
-          { qDef: { qFieldDefs: ['Month'], qLabel: 'Month' } }
+          { qDef: { qFieldDefs: ['Month'], qLabel: 'Month', qSortCriterias: [{qSortByNumeric: 1}] } }
         ],
         qMeasures: [
           { qDef: { qDef: `Sum({$<Activity = {"Deaths /disappearances"}>}Count)`, qLabel: 'Deaths' } }

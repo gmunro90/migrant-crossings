@@ -23,7 +23,7 @@ class PieOne {
         labels: [],
         datasets: [{
           label: '',
-          backgroundColor: 'rgb(43, 144, 201)',
+          backgroundColor: this.options.backgroundColor,
           borderColor: 'rgb(255, 255, 255)',
           data: []
         }]

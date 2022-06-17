@@ -37,7 +37,7 @@ var PieOne = /*#__PURE__*/function () {
           labels: [],
           datasets: [{
             label: '',
-            backgroundColor: 'rgb(43, 144, 201)',
+            backgroundColor: _this.options.backgroundColor,
             borderColor: 'rgb(255, 255, 255)',
             data: []
           }]
@@ -72,7 +72,17 @@ var BarOne = /*#__PURE__*/function () {
       this.options.model.on('changed', this.render.bind(this));
       var config = {
         type: 'bar',
-        options: {}
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            },
+            title: {
+              text: options.title,
+              display: true
+            }
+          }
+        }
       };
       this.barOne = new Chart(document.getElementById(this.elementId), config);
       this.render();
@@ -351,7 +361,10 @@ session.open().then(function (global) {
         qDimensions: [{
           qDef: {
             qFieldDefs: ['Year'],
-            qLabel: 'Year'
+            qLabel: 'Year',
+            qSortCriterias: [{
+              qSortByNumeric: 1
+            }]
           }
         }],
         qMeasures: [{
@@ -370,7 +383,8 @@ session.open().then(function (global) {
     };
     app.createSessionObject(def3).then(function (model) {
       var TestTwo = new BarOne('bar-1', {
-        model: model
+        model: model,
+        title: 'test'
       });
     });
     var def4 = {
@@ -381,7 +395,10 @@ session.open().then(function (global) {
         qDimensions: [{
           qDef: {
             qFieldDefs: ['Month'],
-            qLabel: 'Month'
+            qLabel: 'Month',
+            qSortCriterias: [{
+              qSortByNumeric: 1
+            }]
           }
         }],
         qMeasures: [{
