@@ -11,7 +11,9 @@ class BarOne {
       this.options.model.on('changed', this.render.bind(this))
       const config = {
         type: 'bar',
-        options: { plugins: {legend: {display: false}, title: {text: options.title, display: true}} }
+        options: { 
+          plugins: {legend: {display: false}, title: {text: options.title, display: true}},
+          backgroundColor: '#545AC4' }
       }
       this.barOne = new Chart(
         document.getElementById(this.elementId),
@@ -38,7 +40,7 @@ class BarOne {
         labels: [],
         datasets: [{
           label: '',
-          backgroundColor: 'rgb(242, 73, 107)',
+          backgroundColor: this.options.backgroundColor,
           borderColor: 'rgb(255, 255, 255)',
           data: []
         }]

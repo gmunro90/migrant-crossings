@@ -8,7 +8,9 @@ class PieOne {
     const el = document.getElementById(this.elementId)
     const config = {
       type: 'doughnut',
-      options: {}
+      options: {
+        backgroundColor: '#545AC4'
+      }
     }
     this.pieOne = new Chart(
       document.getElementById(this.elementId),

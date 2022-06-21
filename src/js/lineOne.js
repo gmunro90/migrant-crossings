@@ -12,6 +12,7 @@ class LineOne {
       const config = {
         type: 'line',
         options: {
+          plugins: {legend: {display: false}, title: {text: 'Deaths & disappearances per month', display: true}},
           showLine: true
         }
       }

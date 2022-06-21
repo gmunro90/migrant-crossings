@@ -11,21 +11,11 @@ const options = {
 const router = new WebsyDesigns.Router(options)
 router.init()
 
-// const objectManager = new WebsyDesigns.QlikObjectManager(options)
-// objectManager.init().then(() => {
-//   // The connection is now open
-// })
-
-// const switchTest = new WebsyDesigns.Switch('dark-mode', {
-//   label: 'test', 
-//   onToggle: (a, b) => {
-//   } })
-
 const loader = new WebsyDesigns.WebsyLoadingDialog('loader')
 
 const session = enigma.create({
   schema,
-  url: 'wss://ec2-3-92-185-52.compute-1.amazonaws.com/anon/app/6bb2c4a8-4328-46d5-88e1-747870f4e1d2'
+  url: 'ws://ec2-3-92-185-52.compute-1.amazonaws.com/anon/app/6bb2c4a8-4328-46d5-88e1-747870f4e1d2'
 })
 
 session.open().then(global => {
@@ -123,7 +113,7 @@ session.open().then(global => {
       }
     }
     app.createSessionObject(def3).then(model => {
-      const TestTwo = new BarOne('bar-1', { model, title: 'test' })
+      const TestTwo = new BarOne('bar-1', { model, title: 'Deaths & disappearances by year' })
     })
     const def4 = {
       qInfo: {
@@ -131,7 +121,7 @@ session.open().then(global => {
       },
       qHyperCubeDef: {
         qDimensions: [
-          { qDef: { qFieldDefs: ['Month'], qLabel: 'Month', qSortCriterias: [{qSortByNumeric: 1}] } }
+          { qDef: { qFieldDefs: ['Month'], qLabel: 'Month', qSortCriterias: [{qSortByNumeric: 0}] } }
         ],
         qMeasures: [
           { qDef: { qDef: `Sum({$<Activity = {"Deaths /disappearances"}>}Count)`, qLabel: 'Deaths' } }

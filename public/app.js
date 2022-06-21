@@ -21,7 +21,9 @@ var PieOne = /*#__PURE__*/function () {
     var el = document.getElementById(this.elementId);
     var config = {
       type: 'doughnut',
-      options: {}
+      options: {
+        backgroundColor: '#545AC4'
+      }
     };
     this.pieOne = new Chart(document.getElementById(this.elementId), config);
     this.render();
@@ -81,7 +83,8 @@ var BarOne = /*#__PURE__*/function () {
               text: options.title,
               display: true
             }
-          }
+          },
+          backgroundColor: '#545AC4'
         }
       };
       this.barOne = new Chart(document.getElementById(this.elementId), config);
@@ -111,7 +114,7 @@ var BarOne = /*#__PURE__*/function () {
           labels: [],
           datasets: [{
             label: '',
-            backgroundColor: 'rgb(242, 73, 107)',
+            backgroundColor: _this2.options.backgroundColor,
             borderColor: 'rgb(255, 255, 255)',
             data: []
           }]
@@ -147,6 +150,15 @@ var LineOne = /*#__PURE__*/function () {
       var config = {
         type: 'line',
         options: {
+          plugins: {
+            legend: {
+              display: false
+            },
+            title: {
+              text: 'Deaths & disappearances per month',
+              display: true
+            }
+          },
           showLine: true
         }
       };
@@ -250,19 +262,11 @@ var options = {
   defaultView: 'home'
 };
 var router = new WebsyDesigns.Router(options);
-router.init(); // const objectManager = new WebsyDesigns.QlikObjectManager(options)
-// objectManager.init().then(() => {
-//   // The connection is now open
-// })
-// const switchTest = new WebsyDesigns.Switch('dark-mode', {
-//   label: 'test', 
-//   onToggle: (a, b) => {
-//   } })
-
+router.init();
 var loader = new WebsyDesigns.WebsyLoadingDialog('loader');
 var session = enigma.create({
   schema: schema,
-  url: 'wss://ec2-3-92-185-52.compute-1.amazonaws.com/anon/app/6bb2c4a8-4328-46d5-88e1-747870f4e1d2'
+  url: 'ws://ec2-3-92-185-52.compute-1.amazonaws.com/anon/app/6bb2c4a8-4328-46d5-88e1-747870f4e1d2'
 });
 session.open().then(function (global) {
   global.openDoc('6bb2c4a8-4328-46d5-88e1-747870f4e1d2').then(function (app) {
@@ -384,7 +388,7 @@ session.open().then(function (global) {
     app.createSessionObject(def3).then(function (model) {
       var TestTwo = new BarOne('bar-1', {
         model: model,
-        title: 'test'
+        title: 'Deaths & disappearances by year'
       });
     });
     var def4 = {
@@ -397,7 +401,7 @@ session.open().then(function (global) {
             qFieldDefs: ['Month'],
             qLabel: 'Month',
             qSortCriterias: [{
-              qSortByNumeric: 1
+              qSortByNumeric: 0
             }]
           }
         }],

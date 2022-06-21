@@ -12,7 +12,7 @@
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/"><img class="un-logo" src="https://upload.wikimedia.org/wikipedia/commons/b/b7/IOM_Logo_UN_blue_OIM-IOM.png"/></a>
+    <a class="navbar-brand" href="/"><img class="un-logo" src="/resources/assets/humanlogo.png"/></a>
       <div class="navbar-nav">
         <ul class="nav-flex">
         <li class="websy-trigger nav-item nav-link active" data-view="home">Home</li>
@@ -80,8 +80,6 @@
            in the Central Mediterranean were intensified. This journey is much
           longer, approximately 300 km to the island of Lampedusa and over 500 km to Sicily,
             therefore the number of deaths in this critical area is consistently growing.</p>
-      
-            <h2 class="display-4"><u>Deaths over time</u></h2>
 
       <div class="line-chart-parent">
         
@@ -115,7 +113,7 @@
       
       <footer>
         <ul class="footer-parent">
-          <li class="websy-trigger nav-item nav-link" data-view="#">Privacy Policy</li>
+          <li class="websy-trigger nav-item nav-link" data-view="notFound">Privacy Policy</li>
           <li class="websy-trigger nav-item nav-link" data-view="contact">Contact Us</li>
         </ul>
         <div class="footer-p">
@@ -132,7 +130,7 @@
       <div class="who-we-are">
       <h1 class="who">Who are we?</h1>
       
-      <p>We are Open Arms
+      <p class="lead">We are Open Arms. 
         We are a non-profit non-governmental organisation with one principal mission: to protect those who try to reach Europe by sea, fleeing from armed conflict, persecution or poverty; and also to inform and educate on land so that those who migrate can make decisions with complete freedom and knowledge.
         
         Our intention is to monitor and rescue vessels carrying people who need help in the Mediterranean channel, to protect the lives of the most vulnerable in emergency situations on land and to build alternatives to irregular migration in countries such as Senegal, providing people with resources through community awareness and information. In parallel, we continue to denounce all of the injustices that take place that nobody talks about.
@@ -142,15 +140,24 @@
     <img class="who-img" src="https://www.openarms.es/uploads/quienes_somos/qs_photo_1.jpg?1525421802596">
 
     <h2>With your help, we continue to save lives</h2>
-    <p>With the help of many people to collaborate with their donations, we have been able to increase our resources and save more lives every day: both at sea and on land.
+    <p class="lead">With the help of many people to collaborate with their donations, we have been able to increase our resources and save more lives every day: both at sea and on land.
 
       Also, thanks to their support, we can carry out educational work in schools that seek to generate empathy and critical thought among the youngest generation in order to create a society that is critical of inequality and that fights for a world that is more fair and just.</p>
       
     </div>
 
-    <div>
-      <canvas id="arrivals-es" width="150" height="150"></canvas>
+    <div class="info-parent">
+      <img class="infographic-about" src="resources/assets/infographic1.png" alt="infographic">
     </div>
+    <footer>
+      <ul class="footer-parent">
+        <li class="websy-trigger nav-item nav-link" data-view="notFound">Privacy Policy</li>
+        <li class="websy-trigger nav-item nav-link" data-view="contact">Contact Us</li>
+      </ul>
+      <div class="footer-p">
+      <p>© Fatal Journeys - Barcelona (Spain)</p>
+    </div>
+    </footer>
     </div>
 
   </section>
@@ -162,9 +169,9 @@
       <img class="boat"src="https://api.time.com/wp-content/uploads/2014/06/italy-migrants-refugees-asylum-seekers-1.jpg" alt="boat">
     </div>
 
-    <h2 class="contact-text">If you wish to receive our newsletter, enter your details here</h2>
+    <h3 class="contact-text">If you wish to receive our newsletter, enter your details here:</h3>
 
-    <div class="form-box">
+    <div class="form-box" style="text-align: center;">
       <form action="/action_page.php" class="test">
         <label for="fname">First Name</label>
         <input type="text" id="fname" name="firstname" placeholder="Your name..">
@@ -185,12 +192,31 @@
         </select>
         
       </form>
+      <button class="websy-trigger submitBtn" data-view="notFound">Submit</button>
       </div>
+
+      <footer>
+        <ul class="footer-parent">
+          <li class="websy-trigger nav-item nav-link" data-view="notFound">Privacy Policy</li>
+          <li class="websy-trigger nav-item nav-link" data-view="contact">Contact Us</li>
+        </ul>
+        <div class="footer-p">
+        <p>© Fatal Journeys - Barcelona (Spain)</p>
+      </div>
+      </footer>
 
     </div>
 
   </section>
 
+  <section>
+    <div class="websy-view" data-view="notFound">
+    <div class="not-found">
+    <h1 style="text-align: center;">This is a demo site</h1>
+    <h3 style="text-align: center;">if you'd like to enquire about building your own, <a href="mailto:greg@websy.io">contact us now!</a> or visit  <a href="https://websy.io/" target="blank">our website</a></h3>
+    </div>
+    </div>
+  </section>
 <script src="/external/enigma.js/enigma.min.js"></script>
 <script src="/resources/schema.js"></script>
 
