@@ -6,7 +6,8 @@
   "engines": { "node": "12.20.0" },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"grunt\"  \"node index\""
+    "start": "node index",
+    "dev": "concurrently \"grunt\"  \"node index\""
   },
   "repository": {
     "type": "git",
