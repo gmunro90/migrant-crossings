@@ -445,35 +445,5 @@ session.open().then(function (global) {
         model: model
       });
     });
-    var def6 = {
-      qInfo: {
-        qType: 'pie-one'
-      },
-      qHyperCubeDef: {
-        qDimensions: [{
-          qDef: {
-            qFieldDefs: ['Details'],
-            qLabel: 'Details'
-          }
-        }],
-        qMeasures: [{
-          qDef: {
-            qDef: "Sum({$<Details = {\"Sea arrivals in Spain\"}>}Count)",
-            qLabel: 'Arrivals in Spain via Sea'
-          }
-        }],
-        qInitialDataFetch: [{
-          qTop: 0,
-          qLeft: 0,
-          qWidth: 10,
-          qHeight: 1000
-        }]
-      }
-    };
-    app.createSessionObject(def6).then(function (model) {
-      var TestTwo = new BarOne('arrivals-es', {
-        model: model
-      });
-    });
   });
 });
