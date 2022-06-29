@@ -10,13 +10,14 @@ html, body {
 .header-img {
   display: flex;
   justify-content: center;
-  height: 380px;
+  height: 30vw;
 }
 
 .infographic-1 {
   display: flex;
   justify-content: center;
   margin: 30px;
+  height: 30vw;
 }
 
 .line-chart-parent {
@@ -156,7 +157,7 @@ footer {
 }
 
 .infographic-about {
-  width: 900px;
+  width: 80vw;
   margin: 10px;
 }
 
@@ -205,9 +206,13 @@ li {
   padding: 0;
 }
 
-@media only screen and ( max-width : 650px ) {
+@media ( max-width : 650px ) {
   .pie-chart-parent {
     flex-direction: column;
+  }
+  .line-chart-parent {
+    flex-direction: column;
+    margin: 100px;
   }
 }
 
