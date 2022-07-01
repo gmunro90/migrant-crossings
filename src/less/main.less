@@ -179,13 +179,6 @@ input {
   border-radius: 10px;
 }
 
-
-.hamburger {
-  border: 0;
-  background-color: transparent;
-  margin-top: 14px;
-}
-
 nav {
   background-color: #eeeeee;
   display: flex;
@@ -206,6 +199,10 @@ li {
   padding: 0;
 }
 
+.hamburger {
+  display: none;
+}
+
 @media ( max-width : 650px ) {
   .pie-chart-parent {
     flex-direction: column;
@@ -213,6 +210,18 @@ li {
   .line-chart-parent {
     flex-direction: column;
     margin: 100px;
+  }
+  .hamburger {
+    display: flex;
+    border: none;
+    margin-top: 15px;
+  }
+  .navbar-nav {
+    display: none;
+  }
+  .ham-flex {
+    display: flex;
+    justify-content: flex-end;
   }
 }
 
