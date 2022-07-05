@@ -350,3 +350,13 @@ session.open().then(global => {
     })
   })
 })
+
+const hamBtn = document.getElementById('hamburger')
+const navList = document.getElementById('navbar-nav')
+
+function toggleButton () {
+  navList.classList.toggle('show')
+  console.log('ham clicked')
+}
+
+hamBtn.addEventListener('click', toggleButton)

@@ -202,6 +202,9 @@ li {
 .hamburger {
   display: none;
 }
+.navbar-nav {
+  display: flex;
+}
 
 @media ( max-width : 650px ) {
   .pie-chart-parent {
@@ -215,9 +218,13 @@ li {
     display: flex;
     border: none;
     margin-top: 15px;
+    position: absolute;
   }
   .navbar-nav {
     display: none;
+  }
+  .navbar-nav.show {
+    display: flex;
   }
   .ham-flex {
     display: flex;
