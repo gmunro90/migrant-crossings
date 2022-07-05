@@ -448,11 +448,10 @@ session.open().then(function (global) {
   });
 });
 var hamBtn = document.getElementById('hamburger');
-var navList = document.getElementById('navbar-nav');
+var navList = document.getElementById('nav-flex');
 
 function toggleButton() {
   navList.classList.toggle('show');
-  console.log('ham clicked');
 }
 
 hamBtn.addEventListener('click', toggleButton);

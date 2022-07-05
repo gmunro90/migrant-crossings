@@ -161,11 +161,10 @@ session.open().then(global => {
 })
 
 const hamBtn = document.getElementById('hamburger')
-const navList = document.getElementById('navbar-nav')
+const navList = document.getElementById('nav-flex')
 
 function toggleButton () {
   navList.classList.toggle('show')
-  console.log('ham clicked')
 }
 
 hamBtn.addEventListener('click', toggleButton)
